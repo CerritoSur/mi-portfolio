@@ -4,43 +4,197 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Portfolio - Programador Python</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+   <style>
+    :root {
+        --primary: #4f46e5;
+        --primary-dark: #4338ca;
+        --secondary: #0f172a;
+        --gray: #64748b;
+        --light: #f8fafc;
+        --dark: #0f172a;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+        color: var(--dark);
+        background: white;
+    }
+    
+    .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(15, 23, 42, 0.95) !important;
+        transition: all 0.3s;
+    }
+    
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .hero {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #2d3a5e 100%);
+        color: white;
+        padding: 120px 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="rgba(255,255,255,0.03)" d="M45.3,-77.6C59.3,-70.4,71.7,-57.2,78.5,-41.8C85.3,-26.4,86.5,-8.8,82.2,7.1C77.9,23,68.1,37.2,55.7,47.4C43.3,57.6,28.3,63.8,12.7,68.2C-2.9,72.6,-19.2,75.2,-34.2,71.4C-49.2,67.6,-62.9,57.4,-71.6,43.8C-80.3,30.2,-84,13.2,-81.9,-2.6C-79.8,-18.4,-71.9,-33,-60.5,-44.2C-49.1,-55.4,-34.1,-63.2,-18.8,-69.2C-3.5,-75.2,12.5,-79.4,28.1,-76.7C43.7,-74,59.1,-64.5,45.3,-77.6Z" transform="translate(100 100)"/></svg>') repeat;
+        opacity: 0.3;
+    }
+    
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        animation: fadeInUp 0.8s ease;
+    }
+    
+    .hero .lead {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        animation: fadeInUp 0.8s ease 0.2s both;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .btn-primary {
+        background: var(--primary);
+        border: none;
+        padding: 12px 30px;
+        font-weight: 600;
+        border-radius: 40px;
+        transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+    }
+    
+    .btn-outline-light {
+        border-radius: 40px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    
+    .btn-outline-light:hover {
+        transform: translateY(-2px);
+    }
+    
+    .proyecto-card {
+        border: none;
+        border-radius: 20px;
+        transition: all 0.3s;
+        margin-bottom: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    
+    .proyecto-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s;
+    }
+    
+    .proyecto-card:hover .card-img-top {
+        transform: scale(1.05);
+    }
+    
+    .tecnologia-badge {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+    
+    #sobre-mi {
+        background: linear-gradient(135deg, var(--light) 0%, #ffffff 100%);
+    }
+    
+    .skill-badge {
+        background: white;
+        padding: 8px 16px;
+        border-radius: 40px;
+        margin: 5px;
+        display: inline-block;
+        font-weight: 500;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: all 0.3s;
+    }
+    
+    .skill-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(79, 70, 229, 0.2);
+        color: var(--primary);
+    }
+    
+    footer {
+        background: var(--secondary);
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 100px 0;
+            padding: 80px 0;
         }
-        .proyecto-card {
-            transition: transform 0.3s;
-            margin-bottom: 20px;
-            height: 100%;
-        }
-        .proyecto-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
-        }
-        .tecnologia-badge {
-            background-color: #667eea;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-        .contacto-form {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-    </style>
+    }
+    /* Forzar cursor pointer en los botones */
+    .btn-light, .btn-outline-light {
+        cursor: pointer;
+    }
+
+    /* Asegurar que los botones se comporten como enlaces */
+    a.btn, button.btn {
+        cursor: pointer;
+        display: inline-block;
+    }
+</style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">Mi Portfolio</a>
@@ -59,6 +213,9 @@
                         <a class="nav-link" href="#sobre-mi">Sobre Mí</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#habilidades">Habilidades</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
                     </li>
                 </ul>
@@ -66,20 +223,27 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="inicio" class="hero text-center">
         <div class="container">
-            <h1 class="display-4">Hola, soy Mauro Jaimes</h1>
+            <h1 class="display-4">Mauro Jaimes</h1>
             <p class="lead">Analista de Sistemas | Programador Python Backend</p>
             <p class="mt-4">41 años, Argentina. Transformando ideas en código.</p>
-            <div class="mt-4">
-                <a href="#proyectos" class="btn btn-light btn-lg me-2">Ver mis proyectos</a>
-                <a href="#contacto" class="btn btn-outline-light btn-lg">Contactarme</a>
-            </div>
+            
         </div>
     </section>
 
-    <!-- Proyectos Section -->
+    <!-- Mensajes de éxito/error -->
+    {% if messages %}
+        <div class="container mt-4">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <section id="proyectos" class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">Mis Proyectos</h2>
@@ -120,7 +284,7 @@
                 <div class="col-12 text-center">
                     <p class="lead">Próximamente estaré subiendo mis proyectos...</p>
                     <p>Mientras tanto, podés ver mi perfil de GitHub:</p>
-                    <a href="https://github.com/TU-USUARIO" class="btn btn-dark btn-lg" target="_blank">
+                    <a href="https://github.com/CerritoSur" class="btn btn-dark btn-lg" target="_blank">
                         <i class="bi bi-github"></i> Mi GitHub
                     </a>
                 </div>
@@ -129,7 +293,6 @@
         </div>
     </section>
 
-    <!-- Sobre Mí Section -->
     <section id="sobre-mi" class="py-5 bg-light">
         <div class="container">
             <div class="row">
@@ -174,7 +337,50 @@
         </div>
     </section>
 
-    <!-- Contacto Section -->
+    <section id="habilidades" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Tecnologías que manejo</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="text-center mb-4">
+                        <h4>Backend & Frameworks</h4>
+                        <div>
+                            <span class="skill-badge">🐍 Python</span>
+                            <span class="skill-badge">🚀 Django</span>
+                            <span class="skill-badge">⚡ FastAPI</span>
+                            <span class="skill-badge">📦 Django REST Framework</span>
+                        </div>
+                    </div>
+                    <div class="text-center mb-4">
+                        <h4>Bases de Datos</h4>
+                        <div>
+                            <span class="skill-badge">🗄️ SQLite</span>
+                            <span class="skill-badge">🐘 PostgreSQL</span>
+                            <span class="skill-badge">📊 MySQL</span>
+                        </div>
+                    </div>
+                    <div class="text-center mb-4">
+                        <h4>Herramientas & Control de versiones</h4>
+                        <div>
+                            <span class="skill-badge">📝 Git</span>
+                            <span class="skill-badge">🐙 GitHub</span>
+                            <span class="skill-badge">💻 VS Code</span>
+                            <span class="skill-badge">🐧 Linux</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4>Metodologías</h4>
+                        <div>
+                            <span class="skill-badge">🔄 Scrum</span>
+                            <span class="skill-badge">📋 Kanban</span>
+                            <span class="skill-badge">✅ TDD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contacto" class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">Contacto</h2>
@@ -182,7 +388,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body p-4">
-                            <form method="post" action="#">
+                            <form method="post" action="{% url 'contacto' %}">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
@@ -208,22 +414,28 @@
                             <hr class="my-4">
                             
                             <div class="row text-center">
-                                <div class="col-md-4 mb-3">
+                                <div class="col-12 col-md-3 mb-3">
                                     <div class="d-flex align-items-center justify-content-center">
                                         <i class="bi bi-envelope fs-4 me-2"></i>
-                                        <span>maurojaimes84@gmail.com</span>
+                                        <a href="mailto:maurojaimes84@gmail.com">Mail</a>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-12 col-md-3 mb-3">
                                     <div class="d-flex align-items-center justify-content-center">
                                         <i class="bi bi-linkedin fs-4 me-2"></i>
-                                        <a href="https://linkedin.com/in/tu-perfil" target="_blank">LinkedIn</a>
+                                        <a href="https://linkedin.com/in/mauro-jaimes-62447b243" target="_blank">LinkedIn</a>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-12 col-md-3 mb-3">
                                     <div class="d-flex align-items-center justify-content-center">
                                         <i class="bi bi-github fs-4 me-2"></i>
-                                        <a href="https://github.com/tu-usuario" target="_blank">GitHub</a>
+                                        <a href="https://github.com/CerritoSur" target="_blank">GitHub</a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3 mb-3">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-whatsapp fs-4 me-2"></i>
+                                        <a href="https://wa.me/5492234360564" target="_blank">WhatsApp</a>
                                     </div>
                                 </div>
                             </div>
@@ -234,16 +446,28 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-dark text-white text-center py-4">
         <div class="container">
-            <p class="mb-0">&copy; 2026 - Mauro Jaimes- Programador Python</p>
+            <p class="mb-0">&copy; 2026 - Mauro Jaimes - Programador Python</p>
             <p class="mb-0 small">Hecho con Django y Bootstrap</p>
         </div>
     </footer>
 
-    <!-- Bootstrap Icons (necesario para los íconos) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Desplazamiento suave para todos los enlaces que comienzan con #
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script>
 </body>
 </html>
